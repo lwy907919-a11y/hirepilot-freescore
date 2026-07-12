@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lwy907919-a11y.github.io/hirepilot-freescore/sitemap.xml
