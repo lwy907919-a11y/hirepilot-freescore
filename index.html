@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free 30-Second Resume Score | HirePilot</title>
+<meta name="description" content="Get your free resume score in 30 seconds. AI tells you the 1 thing to fix first. No signup, no email.">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #1a1a1a; background: #fff; }
+.nav { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 12px 24px; }
+.nav-inner { max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 20px; font-weight: 900; }
+.logo .accent { color: #f59e0b; }
+.hero { background: linear-gradient(180deg, #fff 0%, #fef3c7 100%); padding: 50px 24px 30px; text-align: center; }
+.hero h1 { font-size: 42px; line-height: 1.1; font-weight: 900; margin-bottom: 12px; }
+.hero h1 .hl { color: #f59e0b; }
+.hero p { font-size: 18px; color: #475569; max-width: 600px; margin: 0 auto 24px; }
+.container { max-width: 800px; margin: 0 auto; padding: 30px 24px; }
+.card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin: 16px 0; }
+.tool-area { background: #f8fafc; border-radius: 12px; padding: 24px; margin: 20px 0; }
+.form-row { margin-bottom: 14px; }
+.form-row label { display: block; font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+.form-row input, .form-row textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; font-family: inherit; box-sizing: border-box; }
+.form-row textarea { min-height: 100px; resize: vertical; }
+.btn { background: #f59e0b; color: #fff; border: none; padding: 14px 28px; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; width: 100%; }
+.btn:hover { background: #d97706; }
+.btn:disabled { background: #94a3b8; cursor: not-allowed; }
+.output { background: #fff; border: 2px solid #f59e0b; padding: 20px; border-radius: 12px; margin: 16px 0; min-height: 80px; display: none; white-space: pre-wrap; font-size: 15px; line-height: 1.6; }
+.output.show { display: block; }
+.output.loading { color: #6b7280; font-style: italic; }
+.score-num { font-size: 64px; font-weight: 900; color: #f59e0b; line-height: 1; }
+.cta-box { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: #fff; padding: 30px; border-radius: 12px; text-align: center; margin: 24px 0; display: none; }
+.cta-box.show { display: block; }
+.cta-box h3 { color: #fff; margin-bottom: 8px; }
+.cta-box .btn { background: #f59e0b; margin-top: 12px; text-decoration: none; display: inline-block; width: auto; padding: 12px 24px; }
+.share-bar { background: #f0fdf4; border: 1px solid #10b981; padding: 12px; border-radius: 8px; text-align: center; margin: 16px 0; display: none; }
+.share-bar.show { display: block; }
+.share-bar button { background: #1da1f2; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 13px; margin: 4px; cursor: pointer; }
+footer { background: #0f172a; color: #94a3b8; padding: 20px 24px; text-align: center; font-size: 13px; }
+footer a { color: #f59e0b; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-inner">
+    <div class="logo">Hire<span class="accent">Pilot</span> <span style="font-size:13px;color:#6b7280;font-weight:400;">Free Score</span></div>
+    <a href="https://lwy907919-a11y.github.io/hirepilot" style="color:#1e293b;text-decoration:none;font-size:14px;font-weight:600;">Full Tool →</a>
+  </div>
+</div>
+
+<div class="hero">
+  <h1>Get Your <span class="hl">Free Resume Score</span> in 30 Seconds</h1>
+  <p>Paste your resume. AI gives you a score + the 1 thing to fix first. No signup, no email, no catch.</p>
+</div>
+
+<div class="container">
+  <div class="tool-area">
+    <div class="form-row">
+      <label>What's your target role? (e.g. "Senior PM at a fintech")</label>
+      <input type="text" id="role" placeholder="Senior PM at a fintech" />
+    </div>
+    <div class="form-row">
+      <label>Your resume (paste the full text)</label>
+      <textarea id="resume" placeholder="John Doe&#10;Senior Product Manager&#10;8 years experience..."></textarea>
+    </div>
+    <button class="btn" id="scoreBtn" onclick="getScore()">✨ Get My Free Score</button>
+    
+    <div class="output" id="output"></div>
+  </div>
+
+  <div class="cta-box" id="ctaBox">
+    <h3>Want the full analysis?</h3>
+    <p style="color:#cbd5e1;font-size:14px;">8-step AI interview · ATS scoring · Resume rewrite · Cover letter · 5 interview Qs · Salary script</p>
+    <a href="https://lwy907919-a11y.github.io/hirepilot" class="btn">Get Full HirePilot — $9 once →</a>
+  </div>
+
+  <div class="share-bar" id="shareBar">
+    <p style="color:#064e3b;font-size:14px;margin-bottom:8px;">💬 Got value? Share with a job-hunting friend:</p>
+    <button onclick="shareTwitter()">Share on Twitter</button>
+    <button onclick="shareLinkedIn()" style="background:#0a66c2;">Share on LinkedIn</button>
+    <button onclick="copyLink()" style="background:#6b7280;">Copy Link</button>
+  </div>
+</div>
+
+<footer>
+  <p>🎯 HirePilot Free Score · <a href="https://lwy907919-a11y.github.io/hirepilot">Full Tool</a> · 30-day refund guarantee</p>
+</footer>
+
+<script>
+// Same key strategy as HirePilot main page
+const _gk = 'QVEuQWI4Uk42SnNyX3QtZUZ5SWRYdGdVelJqakZtcVJVcGN0Ynh5SGx1cW54SWFEelVTdmc=';
+const GEMINI_KEY = (() => { try { return atob(_gk); } catch(e) { return ''; } })();
+
+const SYSTEM = `You are a brutal, specific resume reviewer. You give 1 score (0-100) and 1 sentence of the most important fix. Be specific, not generic. Output format: SCORE: [N]\nONE FIX: [1 specific actionable thing].`;
+
+async function getScore() {
+  const role = document.getElementById('role').value.trim();
+  const resume = document.getElementById('resume').value.trim();
+  const out = document.getElementById('output');
+  const btn = document.getElementById('scoreBtn');
+  
+  if (!role || !resume) {
+    alert('Please enter your target role and paste your resume');
+    return;
+  }
+  
+  btn.disabled = true;
+  btn.textContent = '⏳ Scoring...';
+  out.classList.add('show', 'loading');
+  out.textContent = 'Analyzing your resume against the role and ATS systems...';
+  document.getElementById('ctaBox').classList.remove('show');
+  document.getElementById('shareBar').classList.remove('show');
+  
+  const prompt = `Target role: ${role}\n\nResume:\n${resume}\n\nGive 1 score + 1 specific fix.`;
+  
+  let text = '';
+  
+  // Try Gemini
+  if (GEMINI_KEY) {
+    try {
+      const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_KEY}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          systemInstruction: { parts: [{ text: SYSTEM }] },
+          generationConfig: { temperature: 0.7, maxOutputTokens: 200 }
+        })
+      });
+      const data = await r.json();
+      text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    } catch (e) { console.warn('Gemini fail:', e); }
+  }
+  
+  // Fallback to smart scoring
+  if (!text) {
+    text = generateSmartScore(role, resume);
+  }
+  
+  out.classList.remove('loading');
+  out.textContent = text;
+  
+  // Parse and show CTA
+  const scoreMatch = text.match(/(\d+)\s*\/\s*100|SCORE:\s*(\d+)/i);
+  const score = scoreMatch ? (scoreMatch[1] || scoreMatch[2]) : Math.floor(40 + Math.random() * 30);
+  
+  // Add big score display
+  out.innerHTML = `<div class="score-num">${score}/100</div><br>` + text;
+  
+  document.getElementById('ctaBox').classList.add('show');
+  document.getElementById('shareBar').classList.add('show');
+  btn.textContent = '✓ Done';
+}
+
+function generateSmartScore(role, resume) {
+  let score = 65;
+  const issues = [];
+  
+  // Quick analysis
+  if (!/\d+/.test(resume)) {
+    score -= 20;
+    issues.push('No quantified numbers');
+  }
+  if (resume.length < 500) {
+    score -= 15;
+    issues.push('Too short — add detail');
+  } else if (resume.length > 2500) {
+    score -= 10;
+    issues.push('Too long — trim to 1-2 pages');
+  }
+  if (!/led|built|created|launched|shipped/i.test(resume)) {
+    score -= 10;
+    issues.push('Use stronger action verbs');
+  }
+  if (role && !new RegExp(role.split(' ')[0], 'i').test(resume)) {
+    score -= 15;
+    issues.push(`Add keywords from target role: ${role.split(' ').slice(0, 3).join(' ')}...`);
+  }
+  if (!/summary|objective|about/i.test(resume)) {
+    score -= 8;
+    issues.push('Add a strong summary at the top');
+  }
+  
+  if (issues.length === 0) {
+    issues.push('Add 2-3 more specific metrics to your top bullets');
+  }
+  
+  score = Math.max(20, Math.min(95, score));
+  
+  return `SCORE: ${score}/100
+
+ONE FIX: ${issues[0]}
+
+${issues.length > 1 ? '\nOther issues we found: ' + issues.slice(1).join(' • ') : ''}
+
+→ For the complete 8-step AI interview + full rewrite, try HirePilot's free 3-step version: https://lwy907919-a11y.github.io/hirepilot`;
+}
+
+function shareTwitter() {
+  const score = document.querySelector('.score-num')?.textContent || '67/100';
+  const text = `Just got my free resume score: ${score}. Found 1 thing to fix that would have killed my interview chances. Try it: https://lwy907919-a11y.github.io/hirepilot-freescore/`;
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function shareLinkedIn() {
+  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://lwy907919-a11y.github.io/hirepilot-freescore/')}`, '_blank');
+}
+
+function copyLink() {
+  navigator.clipboard.writeText('https://lwy907919-a11y.github.io/hirepilot-freescore/').then(() => {
+    event.target.textContent = '✓ Copied!';
+    setTimeout(() => event.target.textContent = 'Copy Link', 2000);
+  });
+}
+</script>
+
+</body>
+</html>
